@@ -354,12 +354,15 @@ function CMain(a) {
     this._loadImages = function() {
         s_oSpriteLibrary.init(this._onImagesLoaded,
             this._onAllImagesLoaded, this);
+
+	SLOTTYPEPATH="./slots/"+SLOTTYPE;
+
         s_oSpriteLibrary.addSprite("but_bg", "./sprites/but_play_bg.png");
         s_oSpriteLibrary.addSprite("but_exit", "./sprites/but_exit.png");
-        s_oSpriteLibrary.addSprite("bg_menu", "./sprites/bg_menu.jpg");
+        s_oSpriteLibrary.addSprite("bg_menu", SLOTTYPEPATH + "/bg_menu.jpg");
         s_oSpriteLibrary.addSprite("bg_game", "./sprites/bg_game.jpg");
-        s_oSpriteLibrary.addSprite("paytable", "./sprites/paytable.jpg");
-        s_oSpriteLibrary.addSprite("mask_slot", "./sprites/mask_slot.png");
+        s_oSpriteLibrary.addSprite("paytable", SLOTTYPEPATH + "/paytable.jpg");
+        s_oSpriteLibrary.addSprite("mask_slot", SLOTTYPEPATH + "/mask_slot.png");
         s_oSpriteLibrary.addSprite("spin_but", "./sprites/but_spin_bg.png");
         s_oSpriteLibrary.addSprite("coin_but",
             "./sprites/but_coin_bg.png");
@@ -369,11 +372,11 @@ function CMain(a) {
         s_oSpriteLibrary.addSprite("but_lines_bg", "./sprites/but_lines_bg.png");
         s_oSpriteLibrary.addSprite("but_maxbet_bg", "./sprites/but_maxbet_bg.png");
         s_oSpriteLibrary.addSprite("audio_icon", "./sprites/audio_icon.png");
-        s_oSpriteLibrary.addSprite("msg_box", "./sprites/msg_box.png");
+        s_oSpriteLibrary.addSprite("msg_box", SLOTTYPEPATH + "/msg_box.png");
         s_oSpriteLibrary.addSprite("logo_ctl", "./sprites/logo_ctl.png");
         s_oSpriteLibrary.addSprite("but_fullscreen", "./sprites/but_fullscreen.png");
         s_oSpriteLibrary.addSprite("but_credits", "./sprites/but_credits.png");
-        for (var a = 1; a < NUM_SYMBOLS + 1; a++) s_oSpriteLibrary.addSprite("symbol_" + a, "./sprites/symbol_" + a + ".png"), s_oSpriteLibrary.addSprite("symbol_" + a + "_anim", "./sprites/symbol_" + a + "_anim.png");
+        for (var a = 1; a < NUM_SYMBOLS + 1; a++) s_oSpriteLibrary.addSprite("symbol_" + a, SLOTTYPEPATH + "/symbol_" + a + ".png"), s_oSpriteLibrary.addSprite("symbol_" + a + "_anim", SLOTTYPEPATH + "/symbol_" + a + "_anim.png");
         for (a = 1; a < NUM_PAYLINES + 1; a++) s_oSpriteLibrary.addSprite("payline_" + a, "./sprites/payline_" + a + ".png");
         f += s_oSpriteLibrary.getNumSprites();
         s_oSpriteLibrary.loadSprites()
