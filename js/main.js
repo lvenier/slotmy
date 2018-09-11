@@ -882,45 +882,25 @@ function CGame(a) {
         }
     };
     this.generateFinalSymbols = function() {
-        E = [];
-        for (var a = 0; a < NUM_ROWS; a++) {
-            E[a] = [];
-            for (var b = 0; b < NUM_REELS; b++)  {
-		E[a][b] = s_aRandSymbols[Math.floor(Math.random() * s_aRandSymbols.length)]
-	    }
-        }
-        B = [];
-        for (a = l = 0; a < k; a++) {
-            b = s_aPaylineCombo[a];
-            var d = [],
-                c = E[b[0].row][b[0].col],
-                f = 1,
-                e = 1;
-            for (d.push({
-                    row: b[0].row,
-                    col: b[0].col,
-                    value: E[b[0].row][b[0].col]
-                }); c === WILD_SYMBOL && e < NUM_REELS;) f++, c = E[b[e].row][b[e].col], d.push({
-                row: b[e].row,
-                col: b[e].col,
-                value: E[b[e].row][b[e].col]
-            }), e++;
-            for (; e < b.length; e++)
-                if (E[b[e].row][b[e].col] === c || E[b[e].row][b[e].col] === WILD_SYMBOL) f++, d.push({
-                    row: b[e].row,
-                    col: b[e].col,
-                    value: E[b[e].row][b[e].col]
-                });
-                else break;
-            0 < s_aSymbolWin[c - 1][f - 1] && (l += s_aSymbolWin[c - 1][f - 1], B.push({
-                line: a + 1,
-                amount: s_aSymbolWin[c - 1][f - 1],
-                num_win: f,
-                value: c,
-                list: d
-            }))
-        }
-        return 0 < B.length ? !0 : !1
+	E = [];
+	var settings = {
+  	    "url": "http://localhost:2222/final.sh",
+	    "method": "GET",
+  	    "dataType": "json",
+	}
+
+	$.ajax(settings).done(function (response) {
+  	    console.log(response);
+	    for (var a = 1; a < NUM_ROWS+1; a++) {
+                E[a-1] = [];
+		for (var b = 1; b < NUM_REELS+1; b++)  {
+                    E[a-1][b-1] = response.spin[a*b-1];
+		}
+	    }	
+        
+            B = response.result;
+            return 0 < B.length ? !0 : !1
+    	});
     };
     this._generateRandSymbols = function() {
         for (var a = [], b = 0; b < NUM_ROWS; b++) a[b] = s_aRandSymbols[Math.floor(Math.random() * s_aRandSymbols.length)];
@@ -939,7 +919,6 @@ function CGame(a) {
     this.stopNextReel =
         function() {
             q++;
-            //0 === q % 2 && (playSound("reel_stop", 1, !1), h = A[q / 2], q === 2 * NUM_REELS && this._endReelAnimation())
             0 === q % 2 && (h = A[q / 2], q === 2 * NUM_REELS && this._endReelAnimation())
         };
     this._endReelAnimation = function() {
