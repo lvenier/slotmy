@@ -890,14 +890,12 @@ function CGame(a) {
 	}
 
 	$.ajax(settings).done(function (response) {
-  	    console.log(response);
-	    for (var a = 1; a < NUM_ROWS+1; a++) {
-                E[a-1] = [];
-		for (var b = 1; b < NUM_REELS+1; b++)  {
-                    E[a-1][b-1] = response.spin[a*b-1];
+	    for (var a = 0; a < NUM_ROWS; a++) {
+                E[a] = [];
+		for (var b = 0; b < NUM_REELS; b++)  {
+                    E[a][b] = response.spin[(a*NUM_REELS)+b];
 		}
 	    }	
-        
             B = response.result;
             return 0 < B.length ? !0 : !1
     	});
