@@ -884,7 +884,7 @@ function CGame(a) {
     this.generateFinalSymbols = function() {
 	E = [];
 	var settings = {
-  	    "url": "http://localhost:2222/final.sh",
+  	    "url": "http://localhost:2222/final.sh?line="+k,
 	    "method": "GET",
   	    "dataType": "json",
 	}
