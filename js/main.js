@@ -753,7 +753,7 @@ function CGame(a) {
     this.generateFinalSymbols = function() {
 	E = [];
 	$.ajax({
-     	    url: "/sh/final.sh?line="+k,
+     	    url: "/sh/spin.sh?line="+k,
      	    method: "GET",
             dataType: "json",
             success: function(response){

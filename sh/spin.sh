@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Content-type: text/html"
+echo ""
+
 declare -A table
 declare -A spin
 declare -A result
@@ -31,7 +34,7 @@ echo '"result": [ '
 nbresult=0
 function count {
     line=$1
-    string="${spin[$2]}${spin[$3]}${spin[$4]}${spin[$5]}${spin[$6]}"
+    string="${spin[$2]}""${spin[$3]}""${spin[$4]}""${spin[$5]}""${spin[$5]}"
     result=$(echo $string | sed 's/\(.\)/\1\n/g' | grep -v ^$ | sort | uniq -c | sort -rn | head -n 1 | sed "s/ //g")
     num_win=${result:0:1}
     value=${result:1:1}
@@ -85,4 +88,4 @@ echo ']'
 
 echo '}'
 
-
+exit 0
