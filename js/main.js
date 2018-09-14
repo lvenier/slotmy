@@ -169,35 +169,35 @@ function CMain(a) {
     this._initSounds = function() {
         var a = [];
         a.push({
-            path: "./sounds/",
+            path: "https://lvenier.github.io/slotmy/sounds/",
             filename: "press_but",
             loop: !1,
             volume: 1,
             ingamename: "press_but"
         });
         a.push({
-            path: "./sounds/",
+            path: "https://lvenier.github.io/slotmy/sounds/",
             filename: "win",
             loop: !1,
             volume: 1,
             ingamename: "win"
         });
         a.push({
-            path: "./sounds/",
+            path: "https://lvenier.github.io/slotmy/sounds/",
             filename: "reels",
             loop: !1,
             volume: 0.1,
             ingamename: "reels"
         });
         a.push({
-            path: "./sounds/",
+            path: "https://lvenier.github.io/slotmy/sounds/",
             filename: "reel_stop",
             loop: !1,
             volume: 1,
             ingamename: "reel_stop"
         });
         a.push({
-            path: "./sounds/",
+            path: "https://lvenier.github.io/slotmy/sounds/",
             filename: "start_reel",
             loop: !1,
             volume: 1,
@@ -219,8 +219,8 @@ function CMain(a) {
         s_oSpriteLibrary.init(this._onImagesLoaded,
             this._onAllImagesLoaded, this);
 
-	SLOTTYPEPATH="./slots/"+SLOTTYPE;
-	SLOTSPRITEPATH="./sprites/";
+	SLOTTYPEPATH="https://lvenier.github.io/slotmy/slots/"+SLOTTYPE;
+	SLOTSPRITEPATH="https://lvenier.github.io/slotmy/sprites/";
 
         s_oSpriteLibrary.addSprite("but_bg", SLOTSPRITEPATH + "but_play_bg.png");
         s_oSpriteLibrary.addSprite("but_exit", SLOTSPRITEPATH + "but_exit.png");
