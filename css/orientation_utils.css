@@ -20,8 +20,6 @@
     -moz-transform: translate(15%,-50%);
     -ms-transform: translate(15%,-50%);
     transform: translate(15%,-50%);
-    
-        
 }
 
 @media (max-width: 767px) {
@@ -29,7 +27,6 @@
         font-size: 30px;  
     }
 }
-
 
 @media (max-width: 500px) {
     .orientation-msg-text{    

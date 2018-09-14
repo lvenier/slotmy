@@ -2,7 +2,6 @@ var CANVAS_WIDTH = 1500,
     CANVAS_HEIGHT = 640,
     EDGEBOARD_X = 300,
     EDGEBOARD_Y = 0,
-    FPS_TIME = 1E3 / 24,
     DISABLE_SOUND_MOBILE = !1,
     FONT_GAME = "arialbold",
     STATE_LOADING = 0,
@@ -18,10 +17,6 @@ var CANVAS_WIDTH = 1500,
     REEL_STATE_STOP = 2,
     ON_MOUSE_DOWN = 0,
     ON_MOUSE_UP = 1,
-    ON_MOUSE_OVER = 2,
-    ON_MOUSE_OUT = 3,
-    ON_DRAG_START = 4,
-    ON_DRAG_END = 5,
     REEL_OFFSET_X = 380,
     REEL_OFFSET_Y = 84,
     NUM_REELS = 5,
@@ -91,139 +86,32 @@ function CSlotSettings() {
     };
     this._initSymbolWin = function() {
         s_aSymbolWin = [];
-        s_aSymbolWin[0] = PAYTABLE_VALUES[0];
-        s_aSymbolWin[1] = PAYTABLE_VALUES[1];
-        s_aSymbolWin[2] = PAYTABLE_VALUES[2];
-        s_aSymbolWin[3] = PAYTABLE_VALUES[3];
-        s_aSymbolWin[4] = PAYTABLE_VALUES[4];
-        s_aSymbolWin[5] = PAYTABLE_VALUES[5];
-        s_aSymbolWin[6] = PAYTABLE_VALUES[6]
+	for (var num = 0; 7 > num; num++)
+        s_aSymbolWin[num] = PAYTABLE_VALUES[num];
     };
+ 
     this._initSymbolAnims = function() {
         s_aSymbolAnims = [];
-        var a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_1_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[0] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_2_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[1] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_3_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[2] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_4_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0,
-                    1
-                ],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[3] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_5_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[4] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_6_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[5] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_7_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[6] = new createjs.SpriteSheet(a);
-        a = {
-            framerate: 20,
-            images: [s_oSpriteLibrary.getSprite("symbol_8_anim")],
-            frames: {
-                width: SYMBOL_SIZE,
-                height: SYMBOL_SIZE,
-                regX: 0,
-                regY: 0
-            },
-            animations: {
-                "static": [0, 1],
-                anim: [1, 14]
-            }
-        };
-        s_aSymbolAnims[7] = new createjs.SpriteSheet(a)
+	for (var num = 1; num < NUM_SYMBOLS+1; num ++) {
+	    var a = { 
+		framerate: 20,
+            	images: [s_oSpriteLibrary.getSprite("symbol_"+num+"_anim")],
+            	frames: {
+                    width: SYMBOL_SIZE,
+                    height: SYMBOL_SIZE,
+                    regX: 0,
+                    regY: 0
+            	},
+            	animations: {
+                    "static": [0, 1],
+                    anim: [1, 14]
+            	}
+            };
+            s_aSymbolAnims[num-1] = new createjs.SpriteSheet(a);
+    	}
+
     };
+
     this._initSymbolsOccurence = function() {
         s_aRandSymbols = [];
         var a;
@@ -234,13 +122,14 @@ function CSlotSettings() {
         for (a = 0; 4 > a; a++) s_aRandSymbols.push(5);
         for (a = 0; 6 > a; a++) s_aRandSymbols.push(6);
         for (a = 0; 6 > a; a++) s_aRandSymbols.push(7);
-        for (a = 0; 1 > a; a++) s_aRandSymbols.push(8)
+        for (a = 0; 1 > a; a++) s_aRandSymbols.push(8);
     };
     this._init()
 }
 var s_aSymbolData, s_aPaylineCombo, s_aSymbolWin, s_aSymbolAnims, s_aRandSymbols;
 TEXT_MONEY = "MONEY";
 TEXT_PLAY = "PLAY";
+TEXT_HOME = "HOME";
 TEXT_BET = "BET";
 TEXT_COIN = "COIN";
 TEXT_MAX_BET = "MAX BET";
@@ -251,28 +140,6 @@ TEXT_WIN = "WIN";
 TEXT_HELP_WILD = "THIS SIMBOL IS A JOLLY WHICH CAN REPLACE ANY OTHER SYMBOL TO MAKE UP A COMBO";
 TEXT_CREDITS_DEVELOPED = "DEVELOPED BY";
 TEXT_CURRENCY = "$";
-TEXT_SHARE_TITLE = "Congratulations!";
-TEXT_SHARE_MSG1 = "You collected <strong>";
-TEXT_SHARE_MSG2 = " points</strong>!<br><br>Share your score with your friends!";
-TEXT_SHARE_SHARE1 = "My score is ";
-TEXT_SHARE_SHARE2 = " points! Can you do better?";
-
-function CPreloader() {
-    var a, c, b, f, h, q, k, m, e, d;
-    this._init = function() {
-        s_oSpriteLibrary.init(this._onImagesLoaded, this._onAllImagesLoaded, this);
-        s_oSpriteLibrary.loadSprites();
-        d = new createjs.Container;
-        s_oStage.addChild(d)
-        s_oMain.preloaderReady()
-    };
-    this.unload = function() {
-        d.removeAllChildren();
-        e.unload()
-    };
-    this._init()
-
-}
 
 function CMain(a) {
     var c, b = 0,
@@ -290,12 +157,9 @@ function CMain(a) {
         createjs.Ticker.addEventListener("tick", this._update);
         navigator.userAgent.match(/Windows Phone/i) && (DISABLE_SOUND_MOBILE = !0);
         s_oSpriteLibrary = new CSpriteLibrary;
-        q = new CPreloader;
-    };
-    this.preloaderReady = function() {
-        !1 !== DISABLE_SOUND_MOBILE && !1 !== s_bMobile || this._initSounds();
+	!1 !== DISABLE_SOUND_MOBILE && !1 !== s_bMobile || this._initSounds();
         this._loadImages();
-        c = !0
+        c = !0;
     };
     this.soundLoaded = function() {
         b++;
@@ -358,27 +222,26 @@ function CMain(a) {
 	SLOTTYPEPATH="https://lvenier.github.io/slotmy/slots/"+SLOTTYPE;
 	SLOTSPRITEPATH="https://lvenier.github.io/slotmy/sprites/";
 
-        s_oSpriteLibrary.addSprite("but_bg", "./sprites/but_play_bg.png");
-        s_oSpriteLibrary.addSprite("but_exit", "./sprites/but_exit.png");
+        s_oSpriteLibrary.addSprite("but_bg", SLOTSPRITEPATH + "but_play_bg.png");
+        s_oSpriteLibrary.addSprite("but_exit", SLOTSPRITEPATH + "but_exit.png");
         s_oSpriteLibrary.addSprite("bg_menu", SLOTTYPEPATH + "/bg_menu.jpg");
-        s_oSpriteLibrary.addSprite("bg_game", "./sprites/bg_game.jpg");
+        s_oSpriteLibrary.addSprite("bg_game", SLOTSPRITEPATH + "bg_game.jpg");
         s_oSpriteLibrary.addSprite("paytable", SLOTTYPEPATH + "/paytable.jpg");
         s_oSpriteLibrary.addSprite("mask_slot", SLOTTYPEPATH + "/mask_slot.png");
-        s_oSpriteLibrary.addSprite("spin_but", "./sprites/but_spin_bg.png");
-        s_oSpriteLibrary.addSprite("coin_but",
-            "./sprites/but_coin_bg.png");
-        s_oSpriteLibrary.addSprite("info_but", "./sprites/but_info_bg.png");
-        s_oSpriteLibrary.addSprite("bet_but", "./sprites/bet_but.png");
-        s_oSpriteLibrary.addSprite("win_frame_anim", "./sprites/win_frame_anim.png");
-        s_oSpriteLibrary.addSprite("but_lines_bg", "./sprites/but_lines_bg.png");
-        s_oSpriteLibrary.addSprite("but_maxbet_bg", "./sprites/but_maxbet_bg.png");
-        s_oSpriteLibrary.addSprite("audio_icon", "./sprites/audio_icon.png");
+        s_oSpriteLibrary.addSprite("spin_but", SLOTSPRITEPATH + "but_spin_bg.png");
+        s_oSpriteLibrary.addSprite("coin_but", SLOTSPRITEPATH + "but_coin_bg.png");
+        s_oSpriteLibrary.addSprite("info_but", SLOTSPRITEPATH + "but_info_bg.png");
+        s_oSpriteLibrary.addSprite("bet_but", SLOTSPRITEPATH + "bet_but.png");
+        s_oSpriteLibrary.addSprite("win_frame_anim", SLOTSPRITEPATH + "win_frame_anim.png");
+        s_oSpriteLibrary.addSprite("but_lines_bg", SLOTSPRITEPATH + "but_lines_bg.png");
+        s_oSpriteLibrary.addSprite("but_maxbet_bg", SLOTSPRITEPATH + "but_maxbet_bg.png");
+        s_oSpriteLibrary.addSprite("audio_icon", SLOTSPRITEPATH + "audio_icon.png");
         s_oSpriteLibrary.addSprite("msg_box", SLOTTYPEPATH + "/msg_box.png");
-        s_oSpriteLibrary.addSprite("logo_ctl", "./sprites/logo_ctl.png");
-        s_oSpriteLibrary.addSprite("but_fullscreen", "./sprites/but_fullscreen.png");
-        s_oSpriteLibrary.addSprite("but_credits", "./sprites/but_credits.png");
+        s_oSpriteLibrary.addSprite("logo_ctl", SLOTSPRITEPATH + "logo_ctl.png");
+        s_oSpriteLibrary.addSprite("but_fullscreen", SLOTSPRITEPATH + "but_fullscreen.png");
+        s_oSpriteLibrary.addSprite("but_credits", SLOTSPRITEPATH + "but_credits.png");
         for (var a = 1; a < NUM_SYMBOLS + 1; a++) s_oSpriteLibrary.addSprite("symbol_" + a, SLOTTYPEPATH + "/symbol_" + a + ".png"), s_oSpriteLibrary.addSprite("symbol_" + a + "_anim", SLOTTYPEPATH + "/symbol_" + a + "_anim.png");
-        for (a = 1; a < NUM_PAYLINES + 1; a++) s_oSpriteLibrary.addSprite("payline_" + a, "./sprites/payline_" + a + ".png");
+        for (a = 1; a < NUM_PAYLINES + 1; a++) s_oSpriteLibrary.addSprite("payline_" + a, SLOTSPRITEPATH + "payline_" + a + ".png");
         f += s_oSpriteLibrary.getNumSprites();
         s_oSpriteLibrary.loadSprites()
     };
@@ -765,10 +628,11 @@ function CMenu() {
         e = createBitmap(s_oSpriteLibrary.getSprite("bg_menu"));
         s_oStage.addChild(e);
         var p = s_oSpriteLibrary.getSprite("but_bg");
-        d = new CTextButton(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 164, p, TEXT_PLAY, FONT_GAME, "#ffffff", "bold 40", s_oStage);
+        dh = new CTextButton(2 * CANVAS_WIDTH / 5, CANVAS_HEIGHT - 164, p, TEXT_HOME, FONT_GAME, "#ffffff", "bold 40", s_oStage);
+        d = new CTextButton(3 * CANVAS_WIDTH / 5, CANVAS_HEIGHT - 164, p, TEXT_PLAY, FONT_GAME, "#ffffff", "bold 40", s_oStage);
+        dh.addEventListener(ON_MOUSE_UP, this._onButHome, this);
         d.addEventListener(ON_MOUSE_UP, this._onButPlayRelease, this);
-        if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,
-            q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
+        if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
         SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
         p = window.document;
         var z = p.documentElement;
@@ -803,6 +667,9 @@ function CMenu() {
         !1 !== DISABLE_SOUND_MOBILE && !1 !== s_bMobile || r.setPosition(h - d, e + q);
         SHOW_CREDITS && x.setPosition(a + d, c + e);
         k && screenfull.enabled && l.setPosition(b + d, f + e)
+    };
+    this._onButHome = function() {
+	window.location.replace("/");
     };
     this._onButPlayRelease = function() {
         this.unload();
@@ -882,47 +749,37 @@ function CGame(a) {
             b += SYMBOL_SIZE
         }
     };
+
     this.generateFinalSymbols = function() {
-        E = [];
-        for (var a = 0; a < NUM_ROWS; a++) {
-            E[a] = [];
-            for (var b = 0; b < NUM_REELS; b++)  {
-		E[a][b] = s_aRandSymbols[Math.floor(Math.random() * s_aRandSymbols.length)]
-	    }
-        }
-        B = [];
-        for (a = l = 0; a < k; a++) {
-            b = s_aPaylineCombo[a];
-            var d = [],
-                c = E[b[0].row][b[0].col],
-                f = 1,
-                e = 1;
-            for (d.push({
-                    row: b[0].row,
-                    col: b[0].col,
-                    value: E[b[0].row][b[0].col]
-                }); c === WILD_SYMBOL && e < NUM_REELS;) f++, c = E[b[e].row][b[e].col], d.push({
-                row: b[e].row,
-                col: b[e].col,
-                value: E[b[e].row][b[e].col]
-            }), e++;
-            for (; e < b.length; e++)
-                if (E[b[e].row][b[e].col] === c || E[b[e].row][b[e].col] === WILD_SYMBOL) f++, d.push({
-                    row: b[e].row,
-                    col: b[e].col,
-                    value: E[b[e].row][b[e].col]
-                });
-                else break;
-            0 < s_aSymbolWin[c - 1][f - 1] && (l += s_aSymbolWin[c - 1][f - 1], B.push({
-                line: a + 1,
-                amount: s_aSymbolWin[c - 1][f - 1],
-                num_win: f,
-                value: c,
-                list: d
-            }))
-        }
-        return 0 < B.length ? !0 : !1
+	E = [];
+	$.ajax({
+     	    url: "http://localhost:2222/final.sh?line="+k,
+     	    method: "GET",
+            dataType: "json",
+            success: function(response){
+		for (var a = 0; a < NUM_ROWS; a++) {
+                    E[a] = [];
+		    for (var b = 0; b < NUM_REELS; b++)  {
+                    	E[a][b] = response.spin[(a*NUM_REELS)+b];
+		    }
+	        }
+                B = response.result;
+                return 0 < B.length ? !0 : !1
+     	    },
+     	    error: function(xhr, status, error){
+	    	response = JSON.parse('{"spin": ["5","7","5","6","4","4","2","4","7","1","2","2","7","7","3"],"result": []}');
+	    	for (var a = 0; a < NUM_ROWS; a++) {
+                    E[a] = [];
+                    for (var b = 0; b < NUM_REELS; b++)  {
+                    	E[a][b] = response.spin[(a*NUM_REELS)+b];
+                    }
+                }
+            	B = response.result;
+            	return 0 < B.length ? !0 : !1
+     	    }
+	});
     };
+
     this._generateRandSymbols = function() {
         for (var a = [], b = 0; b < NUM_ROWS; b++) a[b] = s_aRandSymbols[Math.floor(Math.random() * s_aRandSymbols.length)];
         return a
@@ -940,7 +797,6 @@ function CGame(a) {
     this.stopNextReel =
         function() {
             q++;
-            //0 === q % 2 && (playSound("reel_stop", 1, !1), h = A[q / 2], q === 2 * NUM_REELS && this._endReelAnimation())
             0 === q % 2 && (h = A[q / 2], q === 2 * NUM_REELS && this._endReelAnimation())
         };
     this._endReelAnimation = function() {
@@ -1219,8 +1075,7 @@ function CInterface(a, c, b) {
         k = u.height / 2 + 2;
         x = new CGfxButton(q, k, u, !0);
         x.addEventListener(ON_MOUSE_UP, this._onExit, this);
-        !1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile ? (m = x.getX() - u.width, e = u.height / 2 + 2, z = new CToggle(m, e, s_oSpriteLibrary.getSprite("audio_icon"), s_bAudioActive), z.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this), f = m - u.width, h =
-            e) : (f = x.getX() - u.width, h = u.height / 2 + 2);
+        !1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile ? (m = x.getX() - u.width, e = u.height / 2 + 2, z = new CToggle(m, e, s_oSpriteLibrary.getSprite("audio_icon"), s_bAudioActive), z.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this), f = m - u.width, h = e) : (f = x.getX() - u.width, h = u.height / 2 + 2);
         u = window.document;
         var L = u.documentElement;
         E = L.requestFullscreen || L.mozRequestFullScreen || L.webkitRequestFullScreen || L.msRequestFullscreen;
@@ -1231,7 +1086,6 @@ function CInterface(a, c, b) {
 
         l = new CTextButton(1026 + u.width / 2, 595, u, TEXT_SPIN, FONT_GAME, "#ffffff", 30, s_oStage);
         l.addEventListener(ON_MOUSE_UP, this._onSpin, this);
-
         u = s_oSpriteLibrary.getSprite("info_but");
         y = new CTextButton(296 + u.width / 2, 595, u, TEXT_INFO, FONT_GAME, "#ffffff", 30, s_oStage);
         y.addEventListener(ON_MOUSE_UP, this._onInfo, this);
