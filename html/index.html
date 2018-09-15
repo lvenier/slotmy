@@ -7,59 +7,95 @@
         <meta name="msapplication-tap-highlight" content="no"/>
 	<link rel="stylesheet" href="css/index.css" type="text/css">
 	<link rel="stylesheet" href="css/orientation_utils.css" type="text/css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script type="text/javascript" src="js/index.js"></script>
     </head>
     <body ondragstart="return false;" ondrop="return false;" bgcolor="black">
         <div id="screen" style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%;">
 
+<style>
+#myProgress {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 60%;
+}
+#myBar {
+    text-align: center;
+}
+</style>
+
+<div class="w3-grey" id="myProgress">
+  <div class="w3-white" style="height:24px;width:30%;" id="myBar">30%</div>
+</div>
+
+<script>
+var width = 30;
+function move(move) {
+    width = width + move;
+    console.log(width);
+    document.getElementById("myBar").style.width = width + '%'; 
+    document.getElementById("myBar").innerHTML = width + '%'; 
+    if (width == 100) {
+        document.getElementById("myProgress").style.display="none";
+        document.getElementById("dotlist").style.display="block";
+        document.getElementById("prev").style.display="block";
+        document.getElementById("next").style.display="block";
+    }
+}
+</script>
+
 <div class="slideshow-container">
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <a href="/slot?slot=yoctu"><img src="/img/slots/yoctu/bg_menu.jpg" width="100%" style="width:100%"></a>
+    <a href="/slot?slot=yoctu"><img onload="move(10);" src="/img/slots/yoctu/bg_menu.jpg" width="100%" style="width:100%"></a>
     <div class="text">Yoctu</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <a href="/slot?slot=fruity"><img src="/img/slots/fruity/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=fruity"><img onload="move(10);" src="/img/slots/fruity/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Fruity</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 7</div>
-    <a href="/slot?slot=redspher"><img src="/img/slots/redspher/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=redspher"><img onload="move(10);" src="/img/slots/redspher/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Redspher</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">4 / 7</div>
-    <a href="/slot?slot=clashroyal"><img src="/img/slots/clashroyal/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=clashroyal"><img onload="move(10);" src="/img/slots/clashroyal/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Clash Royal</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">5 / 7</div>
-    <a href="/slot?slot=legomovie"><img src="/img/slots/legomovie/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=legomovie"><img onload="move(10);" src="/img/slots/legomovie/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Lego Movie</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">6 / 7</div>
-    <a href="/slot?slot=haribo"><img src="/img/slots/haribo/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=haribo"><img onload="move(10);" src="/img/slots/haribo/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Haribo</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">7 / 7</div>
-    <a href="/slot?slot=fortnite"><img src="/img/slots/fortnite/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=fortnite"><img onload="move(10);" src="/img/slots/fortnite/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Fortnite</div>
   </div>
 
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  <a id="prev" style="display: none;" class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a id="next" style="display: none;" class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 <br>
-<div style="text-align:center">
+
+
+
+<div style="text-align:center; display: none;" id="dotlist">
   <span class="dot" onclick="currentSlide(1)"></span> 
   <span class="dot" onclick="currentSlide(2)"></span> 
   <span class="dot" onclick="currentSlide(3)"></span> 
