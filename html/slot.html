@@ -21,7 +21,7 @@
         <script>
             $(document).ready(function(){
 		var urlParams = new URLSearchParams(location.search);
-		SLOTTYPE="fruity";
+		SLOTTYPE="yoctu";
 		if (urlParams.has('slot')) {
 			SLOTTYPE=urlParams.get('slot');
 		}
@@ -45,11 +45,6 @@
                                     ad_show_counter:3         //NUMBER OF SPIN PLAYED BEFORE AD SHOWING
                                 });
 
-                $(oMain).on("bet_placed", function (evt, oBetInfo) {
-                    var iBet = oBetInfo.bet;
-                    var iTotBet = oBetInfo.tot_bet;
-                });
-               
                 if(isIOS()){
                     setTimeout(function(){sizeHandler();},200);
                 } else {
@@ -59,7 +54,6 @@
                 socket = io('https://ws.demo.yoctu.com/cast');
         
     		socket.on('connect', function () {
-			if (SLOTTYPE != "") s_oMain.gotoMenu();
     		});
 
     		socket.on('cast.event.game', function () {

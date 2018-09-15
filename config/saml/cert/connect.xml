@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://web1.test.flash-global.net:8000"
+                  ID="_f5a9c294522052c31b4e25fe9289df10fbd87f00df"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata ">
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" AuthnRequestsSigned="true"
+                     WantAssertionsSigned="true">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIICKTCCAZKgAwIBAgIUJDmuVjYMM5IirXINzzAkaAkcOTIwDQYJKoZIhvcNAQEF
+                        BQAwUTEMMAoGA1UECgwDRkVJMRUwEwYDVQQDDAxmbGFzaC5nbG9iYWwxCzAJBgNV
+                        BAsMAklUMRAwDgYDVQQHDAdDb250ZXJuMQswCQYDVQQGDAJMVTAeFw0xODAzMjgx
+                        MTQ3MzhaFw0yMDAzMjgxMTQ3MzhaMFExDDAKBgNVBAoMA0ZFSTEVMBMGA1UEAwwM
+                        Zmxhc2guZ2xvYmFsMQswCQYDVQQLDAJJVDEQMA4GA1UEBwwHQ29udGVybjELMAkG
+                        A1UEBgwCTFUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJuv62O7M7i9sFcM
+                        J/AhaaEeNv5pcoVjjCmmAysls1mo0VHYGFoS2yJ5lGsLI//kY4vFrqOjBXrIUsBb
+                        I05VtGYExX0CMVPStcx3uAwDJMZorn0wqoS28teLf8KwxMat8mPtIcPbWN7vS9tM
+                        nmDFM8Q74K2USp4lPg3tMRrZKyFJAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAUDuu
+                        8t0zyV+X5DIcq6QAQ6rxiRRxfW8Li5GKyzK2F66Be6FlW02lH+eyAkhoo+9fv2SP
+                        nCc4J0HJQVG3Scs45rG3Wa8EDT/wvEyyxGTyGsc9PLLfG4VZ7wr9KyjJxrgavDnR
+                        75qDKN8E/N30IXnZXy60P2nMSoLDBISYBuB1XF8=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIICKTCCAZKgAwIBAgIUJDmuVjYMM5IirXINzzAkaAkcOTIwDQYJKoZIhvcNAQEF
+                        BQAwUTEMMAoGA1UECgwDRkVJMRUwEwYDVQQDDAxmbGFzaC5nbG9iYWwxCzAJBgNV
+                        BAsMAklUMRAwDgYDVQQHDAdDb250ZXJuMQswCQYDVQQGDAJMVTAeFw0xODAzMjgx
+                        MTQ3MzhaFw0yMDAzMjgxMTQ3MzhaMFExDDAKBgNVBAoMA0ZFSTEVMBMGA1UEAwwM
+                        Zmxhc2guZ2xvYmFsMQswCQYDVQQLDAJJVDEQMA4GA1UEBwwHQ29udGVybjELMAkG
+                        A1UEBgwCTFUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJuv62O7M7i9sFcM
+                        J/AhaaEeNv5pcoVjjCmmAysls1mo0VHYGFoS2yJ5lGsLI//kY4vFrqOjBXrIUsBb
+                        I05VtGYExX0CMVPStcx3uAwDJMZorn0wqoS28teLf8KwxMat8mPtIcPbWN7vS9tM
+                        nmDFM8Q74K2USp4lPg3tMRrZKyFJAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAUDuu
+                        8t0zyV+X5DIcq6QAQ6rxiRRxfW8Li5GKyzK2F66Be6FlW02lH+eyAkhoo+9fv2SP
+                        nCc4J0HJQVG3Scs45rG3Wa8EDT/wvEyyxGTyGsc9PLLfG4VZ7wr9KyjJxrgavDnR
+                        75qDKN8E/N30IXnZXy60P2nMSoLDBISYBuB1XF8=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+                             Location="http://web1.test.flash-global.net:8000/logout"/>
+        <AssertionConsumerService index="0" isDefault="false" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                                  Location="http://web1.test.flash-global.net:8000/acs"/>
+    </SPSSODescriptor>
+</EntityDescriptor>

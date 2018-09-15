@@ -1,0 +1,16 @@
+app     var/www/esm/
+auth    var/www/esm/
+bin     var/www/esm/
+config  var/www/esm/
+css     var/www/esm/
+fonts   var/www/esm/ 
+func    var/www/esm/
+html    var/www/esm/
+img     var/www/esm/
+js      var/www/esm/
+lib     var/www/esm/ 
+public  var/www/esm/
+lighttpd.conf.esm.dist etc/lighttpd/
+99-flash-esm etc/sudoers.d/
+README.md usr/share/esm/doc/
+esm-basic.pem etc/ssl/private/
