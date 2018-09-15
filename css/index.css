@@ -12,9 +12,9 @@ img {vertical-align: middle;}
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 30%;
   width: auto;
-  padding: 16px;
+  padding: 64px;
   margin-top: -22px;
   color: white;
   font-weight: bold;
@@ -26,10 +26,6 @@ img {vertical-align: middle;}
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
 }
 
 .text {

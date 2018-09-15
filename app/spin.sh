@@ -1,11 +1,9 @@
-#!/bin/bash
-
-echo "Content-type: text/html"
-echo ""
-
 declare -A table
 declare -A spin
 declare -A result
+
+line=1
+[[ -z ${GET['line']} ]] || line=${GET['line']} 
 
 table[11]=0; table[12]=0; table[13]=100; table[14]=150; table[15]=200
 table[21]=0; table[22]=0; table[23]=50;  table[24]=100; table[25]=150
@@ -32,8 +30,9 @@ echo '],'
 echo '"result": [ '
 
 nbresult=0
+totalamount=0
 function count {
-    line=$1
+    tmpline=$1
     string="${spin[$2]}""${spin[$3]}""${spin[$4]}""${spin[$5]}""${spin[$6]}"
     result=$(echo $string | sed 's/\(.\)/\1\n/g' | grep -v ^$ | sort | uniq -c | sort -rn | head -n 1 | sed "s/ //g")
     num_win=${result:0:1}
@@ -41,12 +40,13 @@ function count {
     amount=${table[$value$num_win]}
 
     if [[ $amount > 0 ]]; then
+	totalamount=$(( $totalamount + $amount ))
 	if [[ $nbresult == 0 ]]; then 
 		nbresult=$(( $nbresult + 1 ))
 	else
 		echo -n ","
 	fi
-	echo '{ "line": '$line', "amount": '$amount', "num_win": '$num_win', "value": '$value', "list": [ '
+	echo '{ "line": '$tmpline', "amount": '$amount', "num_win": '$num_win', "value": '$value', "list": [ '
 	first=0
     	for win in $2 $3 $4 $5 $6
     	do
@@ -63,29 +63,30 @@ function count {
     fi
 }
 
-count 1 6 7 8 9 10
-count 2 1 2 3 4 5
-count 3 11 12 13 14 15
-count 4 1 7 13 9 5
-count 5 11 7 3 9 15
-count 6 6 2 3 4 10
-count 7 6 12 13 14 10
-count 8 1 2 8 14 15
-count 9 11 12 8 4 5
-count 10 6 12 8 4 10
-count 11 11 2 14 10
-count 12 1 7 8 9 5
-count 13 11 7 8 9 15
-count 14 1 7 3 9 5
-count 15 11 7 13 9 15
-count 16 6 7 3 9 10
-count 17 6 7 13 9 10
-count 18 1 2 13 4 5
-count 19 11 12 3 14 15
-count 20 1 12 13 14 4
+[[ $line > 0 ]] && count 1 6 7 8 9 10
+[[ $line > 1 ]] && count 2 1 2 3 4 5
+[[ $line > 2 ]] && count 3 11 12 13 14 15
+[[ $line > 3 ]] && count 4 1 7 13 9 5
+[[ $line > 4 ]] && count 5 11 7 3 9 15
+[[ $line > 5 ]] && count 6 6 2 3 4 10
+[[ $line > 6 ]] && count 7 6 12 13 14 10
+[[ $line > 7 ]] && count 8 1 2 8 14 15
+[[ $line > 8 ]] && count 9 11 12 8 4 5
+[[ $line > 9 ]] && count 10 6 12 8 4 10
+[[ $line > 10 ]] && count 11 11 2 14 10
+[[ $line > 11 ]] && count 12 1 7 8 9 5
+[[ $line > 12 ]] && count 13 11 7 8 9 15
+[[ $line > 13 ]] && count 14 1 7 3 9 5
+[[ $line > 14 ]] && count 15 11 7 13 9 15
+[[ $line > 15 ]] && count 16 6 7 3 9 10
+[[ $line > 16 ]] && count 17 6 7 13 9 10
+[[ $line > 17 ]] && count 18 1 2 13 4 5
+[[ $line > 18 ]] && count 19 11 12 3 14 15
+[[ $line > 19 ]] && count 20 1 12 13 14 4
 
-echo ']'
+echo '],'
 
-echo '}'
+# AMOUNT RESULT
+echo ' "amount": '$totalamount
 
-exit 0
+echo ' }'

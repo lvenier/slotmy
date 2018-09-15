@@ -39,7 +39,7 @@ function CSlotSettings() {
         this._initPaylines();
         this._initSymbolWin();
         this._initSymbolAnims();
-        this._initSymbolsOccurence()
+        this._initSymbolsOccurence();
     };
     this._initSymbolSpriteSheets = function() {
         s_aSymbolData = [];
@@ -242,18 +242,20 @@ function CMain(a) {
         s_oSpriteLibrary.addSprite("but_credits", SLOTSPRITEPATH + "but_credits.png");
         for (var a = 1; a < NUM_SYMBOLS + 1; a++) s_oSpriteLibrary.addSprite("symbol_" + a, SLOTTYPEPATH + "/symbol_" + a + ".png"), s_oSpriteLibrary.addSprite("symbol_" + a + "_anim", SLOTTYPEPATH + "/symbol_" + a + "_anim.png");
         for (a = 1; a < NUM_PAYLINES + 1; a++) s_oSpriteLibrary.addSprite("payline_" + a, SLOTSPRITEPATH + "payline_" + a + ".png");
-        f += s_oSpriteLibrary.getNumSprites();
-        s_oSpriteLibrary.loadSprites()
+        f = s_oSpriteLibrary.getNumSprites();
+        s_oSpriteLibrary.loadSprites();
     };
     this._onImagesLoaded = function() {
         b++;
         b === f && new CSlotSettings
+        b === f && this.gotoMenu();
+	//console.log(b + " / " + f);
     };
-    this._onAllImagesLoaded = function() {};
     this.gotoMenu = function() {
         new CMenu;
-        h = STATE_MENU
+        h = STATE_MENU;
     };
+    this._onAllImagesLoaded = function() { };
     this.gotoGame = function() {
         k = new CGame(m);
         h = STATE_GAME
@@ -753,7 +755,7 @@ function CGame(a) {
     this.generateFinalSymbols = function() {
 	E = [];
 	$.ajax({
-     	    url: "/sh/spin.sh?line="+k,
+     	    url: "/spin?line="+k,
      	    method: "GET",
             dataType: "json",
             success: function(response){
@@ -764,10 +766,11 @@ function CGame(a) {
 		    }
 	        }
                 B = response.result;
+		l = response.amount;
                 return 0 < B.length ? !0 : !1
      	    },
      	    error: function(xhr, status, error){
-	    	response = JSON.parse('{"spin": ["5","7","5","6","4","4","2","4","7","1","2","2","7","7","3"],"result": []}');
+	    	response = JSON.parse('{"spin": ["5","7","5","6","4","4","2","4","7","1","2","2","7","7","3"],"result": [], "amount": 10}');
 	    	for (var a = 0; a < NUM_ROWS; a++) {
                     E[a] = [];
                     for (var b = 0; b < NUM_REELS; b++)  {
@@ -775,6 +778,7 @@ function CGame(a) {
                     }
                 }
             	B = response.result;
+		l = response.amount;
             	return 0 < B.length ? !0 : !1
      	    }
 	});
