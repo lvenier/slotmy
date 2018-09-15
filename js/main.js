@@ -219,8 +219,8 @@ function CMain(a) {
         s_oSpriteLibrary.init(this._onImagesLoaded,
             this._onAllImagesLoaded, this);
 
-	SLOTTYPEPATH="https://lvenier.github.io/slotmy/slots/"+SLOTTYPE;
-	SLOTSPRITEPATH="https://lvenier.github.io/slotmy/sprites/";
+	SLOTTYPEPATH="https://lvenier.github.io/slotmy/img/slots/"+SLOTTYPE;
+	SLOTSPRITEPATH="https://lvenier.github.io/slotmy/img/sprites/";
 
         s_oSpriteLibrary.addSprite("but_bg", SLOTSPRITEPATH + "but_play_bg.png");
         s_oSpriteLibrary.addSprite("but_exit", SLOTSPRITEPATH + "but_exit.png");
