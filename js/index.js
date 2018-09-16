@@ -1,6 +1,6 @@
 var width = 30; 
 
-var select = new Howl({ src: ['https://lvenier.github.io/slotmy/sounds/press_but.mp3'] });
+var select = new Howl({ src: ['https://lvenier.github.io/slotmy/sounds/press_but.mp3'], volume: 1 });
 
 function move(move) { 
     width = width + move; 
@@ -15,10 +15,12 @@ function move(move) {
 }
 
 function plusSlides(n) {
+  select.play(); 
   showSlides(slideIndex += n);
 }
 
 function currentSlide(n) {
+  select.play(); 
   showSlides(slideIndex = n);
 }
 
@@ -51,9 +53,9 @@ window.onload = function(){
 
 document.onkeydown = function (e) {
     switch (e.key) {
-        case 'ArrowLeft': select.play(); plusSlides(-1); break;
+        case 'ArrowLeft': plusSlides(-1); break;
 	case 'Enter': select.play(); document.getElementById("slot"+slideIndex).click(); break;
-        case 'ArrowRight': select.play(); plusSlides(1); break
+        case 'ArrowRight': plusSlides(1); break
     }
 };
 
