@@ -252,7 +252,6 @@ function CMain(a) {
         b++;
         b === f && new CSlotSettings
         b === f && this.gotoMenu();
-	//console.log(b + " / " + f);
     };
     this.gotoMenu = function() {
         new CMenu;

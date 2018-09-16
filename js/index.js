@@ -1,5 +1,7 @@
 var width = 30; 
 
+var select = new Howl({ src: ['https://lvenier.github.io/slotmy/sounds/press_but.mp3'] });
+
 function move(move) { 
     width = width + move; 
     document.getElementById("myBar").style.width = width + '%';  
@@ -49,19 +51,9 @@ window.onload = function(){
 
 document.onkeydown = function (e) {
     switch (e.key) {
-        case 'ArrowUp':
-            break;
-        case 'ArrowDown':
-            break;
-        case 'ArrowLeft':
-	    plusSlides(-1);
-            break;
-	case 'Enter':
-	    document.getElementById("slot"+slideIndex).click();
-	    break;
-        case 'ArrowRight':
-	    plusSlides(1);
-	
+        case 'ArrowLeft': select.play(); plusSlides(-1); break;
+	case 'Enter': select.play(); document.getElementById("slot"+slideIndex).click(); break;
+        case 'ArrowRight': select.play(); plusSlides(1); break
     }
 };
 
