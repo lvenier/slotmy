@@ -1634,8 +1634,8 @@ function CCreditsPanel() {
 document.addEventListener('keydown', function _listener(event) { 
     switch (event.key) {
     	case 'i': if (STATE_MENU == STATUS) s_oMenu._onButCreditsRelease(); break;
-        case 'Escape': if (STATE_MENU == STATUS) { s_oMenu._onButHome(); break; }; if (STATE_GAME == STATUS) s_oGame.onExit(); break;
-        case 'Enter': if (STATE_MENU == STATUS) { s_oMenu._onButPlayRelease(); break; }; if (STATE_GAME == STATUS) s_oGame.onSpin(); break;
+        case 'Escape': if (STATE_MENU == STATUS) { playSound("press_but", 1, !1); s_oMenu._onButHome(); break; }; if (STATE_GAME == STATUS) { playSound("press_but", 1, !1); s_oGame.onExit(); }; break;
+        case 'Enter': if (STATE_MENU == STATUS) { s_oMenu._onButPlayRelease(); playSound("press_but", 1, !1); break; }; if (STATE_GAME == STATUS) s_oGame.onSpin(); break;
         case 's': if (STATE_MENU == STATUS) s_oMenu._onAudioToggle(); break;
     }
 });
