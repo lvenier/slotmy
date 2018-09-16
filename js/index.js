@@ -1,3 +1,17 @@
+var width = 30; 
+
+function move(move) { 
+    width = width + move; 
+    document.getElementById("myBar").style.width = width + '%';  
+    document.getElementById("myBar").innerHTML = width + '%';  
+    if (width == 100) { 
+        document.getElementById("myProgress").style.display="none"; 
+        document.getElementById("dotlist").style.display="block"; 
+        document.getElementById("prev").style.display="block"; 
+        document.getElementById("next").style.display="block"; 
+    } 
+}
+
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
@@ -30,6 +44,24 @@ window.onload = function(){
 	window.location.replace("/slot.html?slot="+urlParams.get('slot'));
     } else {
 	showSlides(slideIndex);
+    }
+};
+
+document.onkeydown = function (e) {
+    switch (e.key) {
+        case 'ArrowUp':
+            break;
+        case 'ArrowDown':
+            break;
+        case 'ArrowLeft':
+	    plusSlides(-1);
+            break;
+	case 'Enter':
+	    document.getElementById("slot"+slideIndex).click();
+	    break;
+        case 'ArrowRight':
+	    plusSlides(1);
+	
     }
 };
 

@@ -29,32 +29,16 @@
   <div class="w3-white" style="height:24px;width:30%;" id="myBar">30%</div>
 </div>
 
-<script>
-var width = 30;
-function move(move) {
-    width = width + move;
-    console.log(width);
-    document.getElementById("myBar").style.width = width + '%'; 
-    document.getElementById("myBar").innerHTML = width + '%'; 
-    if (width == 100) {
-        document.getElementById("myProgress").style.display="none";
-        document.getElementById("dotlist").style.display="block";
-        document.getElementById("prev").style.display="block";
-        document.getElementById("next").style.display="block";
-    }
-}
-</script>
-
 <div class="slideshow-container">
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <a href="/slot?slot=yoctu"><img onload="move(10);" src="/img/slots/yoctu/bg_menu.jpg" width="100%" style="width:100%"></a>
+    <a href="/slot?slot=yoctu" id="slot1"><img onload="move(10);" src="/img/slots/yoctu/bg_menu.jpg" width="100%" style="width:100%"></a>
     <div class="text">Yoctu</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <a href="/slot?slot=fruity"><img onload="move(10);" src="/img/slots/fruity/bg_menu.jpg" style="width:100%"></a>
+    <a href="/slot?slot=fruity" id="slot2"><img onload="move(10);" src="/img/slots/fruity/bg_menu.jpg" style="width:100%"></a>
     <div class="text">Fruity</div>
   </div>
 
@@ -92,8 +76,6 @@ function move(move) {
   <a id="next" style="display: none;" class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 <br>
-
-
 
 <div style="text-align:center; display: none;" id="dotlist">
   <span class="dot" onclick="currentSlide(1)"></span> 

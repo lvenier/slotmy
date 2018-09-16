@@ -127,6 +127,7 @@ function CSlotSettings() {
     this._init()
 }
 var s_aSymbolData, s_aPaylineCombo, s_aSymbolWin, s_aSymbolAnims, s_aRandSymbols;
+
 TEXT_MONEY = "MONEY";
 TEXT_PLAY = "PLAY";
 TEXT_HOME = "HOME";
@@ -140,6 +141,8 @@ TEXT_WIN = "WIN";
 TEXT_HELP_WILD = "THIS SIMBOL IS A JOLLY WHICH CAN REPLACE ANY OTHER SYMBOL TO MAKE UP A COMBO";
 TEXT_CREDITS_DEVELOPED = "DEVELOPED BY";
 TEXT_CURRENCY = "$";
+
+var STATUS;
 
 function CMain(a) {
     var c, b = 0,
@@ -254,11 +257,13 @@ function CMain(a) {
     this.gotoMenu = function() {
         new CMenu;
         h = STATE_MENU;
+	STATUS = STATE_MENU;
     };
     this._onAllImagesLoaded = function() { };
     this.gotoGame = function() {
         k = new CGame(m);
         h = STATE_GAME
+	STATUS = STATE_GAME;
     };
     this.gotoHelp = function() {
         new CHelp;
@@ -651,7 +656,7 @@ function CMenu() {
         }, 400).call(function() {
             y.visible = !1
         });
-        this.refreshButtonPos(s_iOffsetX, s_iOffsetY)
+        this.refreshButtonPos(s_iOffsetX, s_iOffsetY);
     };
     this.unload = function() {
         d.unload();
@@ -675,7 +680,7 @@ function CMenu() {
     };
     this._onButPlayRelease = function() {
         this.unload();
-        s_oMain.gotoGame()
+        s_oMain.gotoGame();
     };
     this._onAudioToggle = function() {
         Howler.mute(s_bAudioActive);
@@ -692,7 +697,9 @@ function CMenu() {
         sizeHandler()
     };
     s_oMenu = this;
-    this._init()
+    this._init();
+
+    
 }
 var s_oMenu = null;
 
@@ -923,7 +930,7 @@ function CGame(a) {
         };
     this.onExit = function() {
         this.unload();
-        s_oMain.gotoMenu()
+        s_oMain.gotoMenu();
     };
     this.getState = function() {
         return b
@@ -952,6 +959,7 @@ function CGame(a) {
     var I = a.ad_show_counter;
     this._init()
 }
+
 var s_oGame, s_oTweenController;
 
 function CReelColumn(a, c, b, f) {
@@ -1624,3 +1632,11 @@ function CCreditsPanel() {
     this._init()
 }
 
+document.addEventListener('keydown', function _listener(event) { 
+    switch (event.key) {
+    	case 'i': if (STATE_MENU == STATUS) s_oMenu._onButCreditsRelease(); break;
+        case 'Escape': if (STATE_MENU == STATUS) { s_oMenu._onButHome(); break; }; if (STATE_GAME == STATUS) s_oGame.onExit(); break;
+        case 'Enter': if (STATE_MENU == STATUS) { s_oMenu._onButPlayRelease(); break; }; if (STATE_GAME == STATUS) s_oGame.onSpin(); break;
+        case 's': if (STATE_MENU == STATUS) s_oMenu._onAudioToggle(); break;
+    }
+});
