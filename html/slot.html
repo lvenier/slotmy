@@ -19,6 +19,7 @@
 	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
 
         <script>
+	    machine_id = Math.random().toString(36).substring(2, 8) + Math.random().toString(36).substring(2, 8);
             $(document).ready(function(){
 		var urlParams = new URLSearchParams(location.search);
 		SLOTTYPE="yoctu";
@@ -26,6 +27,7 @@
 			SLOTTYPE=urlParams.get('slot');
 		}
                 var oMain = new CMain({
+				    machine_id: machine_id,
                                     slot_cash: 100,          //THIS IS THE CURRENT SLOT CASH AMOUNT. THE GAME CHECKS IF THERE IS AVAILABLE CASH FOR WINNINGS.
                                     min_reel_loop:2,          //NUMBER OF REEL LOOPS BEFORE SLOT STOPS  
                                     reel_delay: 6,            //NUMBER OF FRAMES TO DELAY THE REELS THAT START AFTER THE FIRST ONE
@@ -56,12 +58,16 @@
     		socket.on('connect', function () {
     		});
 
-    		socket.on('cast.event.game', function () {
-        	    s_oMain.gotoGame()
+    		socket.on('cast.event.game.'+machine_id, function () {
+        	    s_oMain.gotoGame();
     		});
 
-    		socket.on('cast.event.spin', function () {
+    		socket.on('cast.event.spin.'+machine_id, function () {
 		    s_oMain.getGame().onSpin();
+    		});
+
+		socket.on('cast.event.info.'+machine_id, function () {
+		    s_oMain.getGame().onInfoClicked();
     		});
 
            });

@@ -31,7 +31,7 @@ var CANVAS_WIDTH = 1500,
     REEL_ARRIVAL_Y = REEL_OFFSET_Y + 3 * SYMBOL_SIZE,
     TIME_SHOW_WIN, TIME_SHOW_ALL_WINS, MIN_BET = .05,
     MAX_BET = .5,
-    TOTAL_MONEY, SLOT_CASH, MIN_WIN, PAYTABLE_VALUES, ENABLE_FULLSCREEN, ENABLE_CHECK_ORIENTATION, SHOW_CREDITS;
+    TOTAL_MONEY, SLOT_CASH, MIN_WIN, PAYTABLE_VALUES, ENABLE_FULLSCREEN, ENABLE_CHECK_ORIENTATION, SHOW_CREDITS, MACHINE_ID;
 
 function CSlotSettings() {
     this._init = function() {
@@ -304,6 +304,7 @@ function CMain(a) {
     ENABLE_FULLSCREEN = m.fullscreen;
     ENABLE_CHECK_ORIENTATION = m.check_orientation;
     SHOW_CREDITS = m.show_credits;
+    MACHINE_ID = a.machine_id;
     this.initContainer()
 }
 var s_bMobile, s_bAudioActive = !0,
@@ -640,6 +641,15 @@ function CMenu() {
         d.addEventListener(ON_MOUSE_UP, this._onButPlayRelease, this);
         if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
         SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
+
+	t = new createjs.Text(MACHINE_ID, "20px " + FONT_GAME, "#fff");
+        t.textAlign = "center";
+        t.textBaseline = "alphabetic";
+        t.x = CANVAS_WIDTH / 2;
+        t.y = CANVAS_HEIGHT - 10;
+        s_oStage.addChild(t);
+
+
         p = window.document;
         var z = p.documentElement;
         k = z.requestFullscreen || z.mozRequestFullScreen || z.webkitRequestFullScreen || z.msRequestFullscreen;
