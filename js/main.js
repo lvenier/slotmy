@@ -239,6 +239,7 @@ function CMain(a) {
         s_oSpriteLibrary.addSprite("but_lines_bg", SLOTSPRITEPATH + "but_lines_bg.png");
         s_oSpriteLibrary.addSprite("but_maxbet_bg", SLOTSPRITEPATH + "but_maxbet_bg.png");
         s_oSpriteLibrary.addSprite("audio_icon", SLOTSPRITEPATH + "audio_icon.png");
+        s_oSpriteLibrary.addSprite("cast_icon", SLOTSPRITEPATH + "cast_icon.png");
         s_oSpriteLibrary.addSprite("msg_box", SLOTTYPEPATH + "/msg_box.png");
         s_oSpriteLibrary.addSprite("logo_ctl", SLOTSPRITEPATH + "logo_ctl.png");
         s_oSpriteLibrary.addSprite("but_fullscreen", SLOTSPRITEPATH + "but_fullscreen.png");
@@ -639,7 +640,14 @@ function CMenu() {
         d = new CTextButton(3 * CANVAS_WIDTH / 5, CANVAS_HEIGHT - 164, p, TEXT_PLAY, FONT_GAME, "#ffffff", "bold 40", s_oStage);
         dh.addEventListener(ON_MOUSE_UP, this._onButHome, this);
         d.addEventListener(ON_MOUSE_UP, this._onButPlayRelease, this);
+
         if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
+
+        p = s_oSpriteLibrary.getSprite("cast_icon");
+	h = CANVAS_WIDTH - p.width / 4 - 100;
+	q = p.height / 2 + 10;
+	r.addEventListener(ON_MOUSE_UP, this._onCast, this);
+
         SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
 
 	t = new createjs.Text(MACHINE_ID, "20px " + FONT_GAME, "#fff");
