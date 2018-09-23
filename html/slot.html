@@ -19,12 +19,16 @@
 	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
 
         <script>
-	    machine_id = Math.random().toString(36).substring(2, 8) + Math.random().toString(36).substring(2, 8);
+	    
             $(document).ready(function(){
 		var urlParams = new URLSearchParams(location.search);
 		SLOTTYPE="yoctu";
+	        machine_id = Math.random().toString(36).substring(2, 8) + Math.random().toString(36).substring(2, 8);
 		if (urlParams.has('slot')) {
 			SLOTTYPE=urlParams.get('slot');
+		}
+		if (urlParams.has('machine_id')) {
+			machine_id=urlParams.get('machine_id');
 		}
                 var oMain = new CMain({
 				    machine_id: machine_id,
