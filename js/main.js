@@ -641,15 +641,15 @@ function CMenu() {
         dh.addEventListener(ON_MOUSE_UP, this._onButHome, this);
         d.addEventListener(ON_MOUSE_UP, this._onButPlayRelease, this);
 
-	p = s_oSpriteLibrary.getSprite("cast_icon");
-	h = CANVAS_WIDTH - 500;
-	q = p.height / 2 + 10;
-	ca = new CTextButton( h, q , p, "", FONT_GAME, "#ffffff", 30, s_oStage);
+	pa = s_oSpriteLibrary.getSprite("cast_icon");
+	ha = CANVAS_WIDTH - p.width / 4 - 85;
+	qa = p.height / 2 + 2;
+	ca = new CTextButton( ha, qa , pa, "", FONT_GAME, "#ffffff", 30, s_oStage);
 	ca.addEventListener(ON_MOUSE_UP, this._onCast, this);
 
         if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
 
-               SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
+        SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
 
 	t = new createjs.Text(MACHINE_ID, "20px " + FONT_GAME, "#fff");
         t.textAlign = "center";
@@ -690,6 +690,7 @@ function CMenu() {
     this.refreshButtonPos = function(d, e) {
         !1 !== DISABLE_SOUND_MOBILE && !1 !== s_bMobile || r.setPosition(h - d, e + q);
         SHOW_CREDITS && x.setPosition(a + d, c + e);
+	ca.setPosition(ha - d, e + qa);
         k && screenfull.enabled && l.setPosition(b + d, f + e)
     };
     this._onButHome = function() {
