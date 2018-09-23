@@ -714,6 +714,15 @@ function CMenu() {
         s_bFullscreen ? m.call(window.document) : k.call(window.document.documentElement);
         sizeHandler()
     };
+    this._onCast = function() {
+	console.log(location.href);
+	sendMessage({
+                url: location.href,
+		force: false,
+          	reload: false
+            });
+    };
+
     s_oMenu = this;
     this._init();
     
