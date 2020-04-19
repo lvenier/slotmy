@@ -1,5 +1,0 @@
-#!/bin/bash
-
-getent passwd esm &> /dev/null || { touch /tmp/esm.install; 
-                    if pidof apache2 &> /dev/null; then service apache2 stop && touch /tmp/esm.apache; fi; }
-
