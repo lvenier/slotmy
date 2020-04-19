@@ -13,7 +13,6 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.15/howler.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/browser.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 	<script type="text/javascript" src="https://cast.yoctu.com/js/yoctu-cast.js"></script>
     </head>
@@ -58,24 +57,6 @@
                 } else {
                         sizeHandler();
                 }
-
-                socket = io('https://ws.demo.yoctu.com/cast');
-        
-    		socket.on('connect', function () {
-    		});
-
-    		socket.on('cast.event.game.'+machine_id, function () {
-        	    s_oMain.gotoGame();
-    		});
-
-    		socket.on('cast.event.spin.'+machine_id, function () {
-		    s_oMain.getGame().onSpin();
-    		});
-
-		socket.on('cast.event.info.'+machine_id, function () {
-		    s_oMain.getGame().onInfoClicked();
-    		});
-
            });
         </script>
 
