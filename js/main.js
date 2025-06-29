@@ -788,31 +788,23 @@ function CGame(a) {
     this.generateFinalSymbols = function() {
 	E = [];
 	$.ajax({
-     	    url: "/spin?line="+k,
+     	    url: "https://round-glitter-5259.lav-8b1.workers.dev/?line="+k,
      	    method: "GET",
             dataType: "json",
             success: function(response){
-		for (var a = 0; a < NUM_ROWS; a++) {
+                console.log("succes")
+                for (var a = 0; a < NUM_ROWS; a++) {
                     E[a] = [];
-		    for (var b = 0; b < NUM_REELS; b++)  {
-                    	E[a][b] = response.spin[(a*NUM_REELS)+b];
-		    }
-	        }
+                    for (var b = 0; b < NUM_REELS; b++)  {
+                        E[a][b] = response.spin[(a*NUM_REELS)+b];
+                    }
+                }
                 B = response.result;
-		l = response.amount;
+                l = response.amount;
                 return 0 < B.length ? !0 : !1
      	    },
      	    error: function(xhr, status, error){
-	    	response = JSON.parse('{"spin": ["5","7","5","6","4","4","2","4","7","1","2","2","7","7","3"],"result": [], "amount": 10}');
-	    	for (var a = 0; a < NUM_ROWS; a++) {
-                    E[a] = [];
-                    for (var b = 0; b < NUM_REELS; b++)  {
-                    	E[a][b] = response.spin[(a*NUM_REELS)+b];
-                    }
-                }
-            	B = response.result;
-		l = response.amount;
-            	return 0 < B.length ? !0 : !1
+                console.log("error")
      	    }
 	});
     };
@@ -1653,7 +1645,7 @@ function CCreditsPanel() {
         s_oStage.removeChild(d)
     };
     this._onLogoButRelease = function() {
-        window.open("https://www.yoctu.com", "_blank")
+        window.open("https://www.saashup.com", "_blank")
     };
     this._init()
 }
