@@ -239,7 +239,6 @@ function CMain(a) {
         s_oSpriteLibrary.addSprite("but_lines_bg", SLOTSPRITEPATH + "but_lines_bg.png");
         s_oSpriteLibrary.addSprite("but_maxbet_bg", SLOTSPRITEPATH + "but_maxbet_bg.png");
         s_oSpriteLibrary.addSprite("audio_icon", SLOTSPRITEPATH + "audio_icon.png");
-        s_oSpriteLibrary.addSprite("cast_icon", SLOTSPRITEPATH + "cast_icon.png");
         s_oSpriteLibrary.addSprite("msg_box", SLOTTYPEPATH + "/msg_box.png");
         s_oSpriteLibrary.addSprite("logo_ctl", SLOTSPRITEPATH + "logo_ctl.png");
         s_oSpriteLibrary.addSprite("but_fullscreen", SLOTSPRITEPATH + "but_fullscreen.png");
@@ -641,12 +640,6 @@ function CMenu() {
         dh.addEventListener(ON_MOUSE_UP, this._onButHome, this);
         d.addEventListener(ON_MOUSE_UP, this._onButPlayRelease, this);
 
-	pa = s_oSpriteLibrary.getSprite("cast_icon");
-	ha = CANVAS_WIDTH - p.width / 4 - 85;
-	qa = p.height / 2 + 2;
-	ca = new CTextButton( ha, qa , pa, "", FONT_GAME, "#ffffff", 30, s_oStage);
-	ca.addEventListener(ON_MOUSE_UP, this._onCast, this);
-
         if (!1 === DISABLE_SOUND_MOBILE || !1 === s_bMobile) p = s_oSpriteLibrary.getSprite("audio_icon"), h = CANVAS_WIDTH - p.width / 4 - 10, q = p.height / 2 + 10, r = new CToggle(h,q, p, s_bAudioActive), r.addEventListener(ON_MOUSE_UP, this._onAudioToggle, this);
 
         SHOW_CREDITS ? (p = s_oSpriteLibrary.getSprite("but_credits"), a = p.height / 2 + 10, c = p.height / 2 + 10, x = new CGfxButton(a, c, p, s_oStage), x.addEventListener(ON_MOUSE_UP, this._onButCreditsRelease, this), b = a + p.width + 10, f = c) : (b = p.height / 2 + 10, f = p.height / 2 + 10);
@@ -690,7 +683,6 @@ function CMenu() {
     this.refreshButtonPos = function(d, e) {
         !1 !== DISABLE_SOUND_MOBILE && !1 !== s_bMobile || r.setPosition(h - d, e + q);
         SHOW_CREDITS && x.setPosition(a + d, c + e);
-	ca.setPosition(ha - d, e + qa);
         k && screenfull.enabled && l.setPosition(b + d, f + e)
     };
     this._onButHome = function() {
@@ -713,14 +705,6 @@ function CMenu() {
     this._onFullscreenRelease = function() {
         s_bFullscreen ? m.call(window.document) : k.call(window.document.documentElement);
         sizeHandler()
-    };
-    this._onCast = function() {
-	console.log(location.href);
-	sendMessage({
-                url: location.href,
-		force: false,
-          	reload: false
-            });
     };
 
     s_oMenu = this;
