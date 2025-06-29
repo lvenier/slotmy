@@ -3,15 +3,9 @@ var width = 30;
 var select = new Howl({ src: ['https://lvenier.github.io/slotmy/sounds/press_but.mp3'], volume: 1 });
 
 function move(move) { 
-    width = width + move; 
-    document.getElementById("myBar").style.width = width + '%';  
-    document.getElementById("myBar").innerHTML = width + '%';  
-    if (width == 100) { 
-        document.getElementById("myProgress").style.display="none"; 
         document.getElementById("dotlist").style.display="block"; 
         document.getElementById("prev").style.display="block"; 
         document.getElementById("next").style.display="block"; 
-    } 
 }
 
 function plusSlides(n) {
