@@ -686,7 +686,7 @@ function CMenu() {
         k && screenfull.enabled && l.setPosition(b + d, f + e)
     };
     this._onButHome = function() {
-	window.location.replace("/");
+	window.location.replace("https://lvenier.github.io/slotmy/");
     };
     this._onButPlayRelease = function() {
         this.unload();
