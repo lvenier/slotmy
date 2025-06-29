@@ -1603,14 +1603,14 @@ function CCreditsPanel() {
         b.x = CANVAS_WIDTH / 2;
         b.y = CANVAS_HEIGHT / 2;
         d.addChild(b);
-        e = new createjs.Text("www.yoctu.com", "34px " + FONT_GAME, "#000");
+        e = new createjs.Text("www.saashup.com", "34px " + FONT_GAME, "#000");
         e.textAlign = "center";
         e.textBaseline = "alphabetic";
         e.x = CANVAS_WIDTH / 2;
         e.y = 395;
         e.outline = 3;
         d.addChild(e);
-        m = new createjs.Text("www.yoctu.com", "34px " + FONT_GAME, "#fff");
+        m = new createjs.Text("www.saashup.com", "34px " + FONT_GAME, "#fff");
         m.textAlign = "center";
         m.textBaseline = "alphabetic";
         m.x = CANVAS_WIDTH / 2;
